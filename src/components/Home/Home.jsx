@@ -11,6 +11,8 @@ import Cart from "../Cart/Cart";
 const Home = () => {
     const [languages, setLanguages] = useState([])
     const [selectedLanguage, setSelectedLanguage] = useState([])
+    const [remaining, setRemaining] = useState(0)
+    const [totalHour, setTotalHour] = useState(0)
     useEffect(() => {
         fetch('./data.json')
         .then(res => res.json())
@@ -29,7 +31,10 @@ const Home = () => {
             selectedLanguage.forEach((item) => {
                 hour = hour + item.time
             })
-            console.log(hour);
+            
+            const totalRemaining = 20 - hour;
+            setTotalHour(hour)
+            setRemaining(totalRemaining);
             setSelectedLanguage([...selectedLanguage, language])
         }
     }
@@ -67,7 +72,7 @@ const Home = () => {
 
             </div>
            <div className="w-1/3 text-center border border-gray-700 rounded">
-           <Cart selectedLanguage= {selectedLanguage}></Cart>
+           <Cart selectedLanguage = {selectedLanguage} remaining = {remaining} totalHour = {totalHour}></Cart>
          </div>
         </div>
     );
