@@ -5,8 +5,6 @@ import swal from 'sweetalert';
 import { useEffect } from "react";
 import { useState } from "react";
 import Cart from "../Cart/Cart";
-// import { IoBookOutline } from 'react-icons/fa';
-
 
 const Home = () => {
     const [languages, setLanguages] = useState([])
@@ -19,7 +17,7 @@ const Home = () => {
         .then(data => setLanguages(data))
     } ,[])
 
-    // console.log(languages);
+   
     const handleSelect = (language) => {
       
         const isExisted = selectedLanguage.find((fixed) => fixed.id === language.id);
@@ -33,12 +31,18 @@ const Home = () => {
             })
             
             const totalRemaining = 20 - hour;
+           
+        if (hour > 20) {
+            swal('You do not have more hours.')
+        }    
+         else{
             setTotalHour(hour)
             setRemaining(totalRemaining);
             setSelectedLanguage([...selectedLanguage, language])
+         }   
         }
     }
-    // console.log(selectedLanguage);
+   
     return (  
        
         <div className="max-w-7xl mx-auto flex justify-between gap-3 mt-5">
@@ -52,7 +56,7 @@ const Home = () => {
                          <h2 className="card-title text-center text-[18px] font-semibold">{language.name}</h2>
                            <p className="text-center text-slate-600">{language.description}</p>
                             <div className="flex justify-around">
-                                <span className="mt-2">$ <small className="font-medium">Price : {language.price}</small></span>
+                                <span className="mt-2">$ <small className="font-medium text-[18px]">Price : {language.price}</small></span>
                                 <div className="flex gap-2 mt-2"> 
                                    <button>
                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -71,7 +75,7 @@ const Home = () => {
             }
 
             </div>
-           <div className="w-1/3 text-center border border-gray-700 rounded">
+           <div className="w-1/3 text-center rounded">
            <Cart selectedLanguage = {selectedLanguage} remaining = {remaining} totalHour = {totalHour}></Cart>
          </div>
         </div>

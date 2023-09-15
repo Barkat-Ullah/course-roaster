@@ -4,11 +4,10 @@
 
 
 const Cart = ({selectedLanguage, remaining, totalHour}) => {
-    
  let count
     return (
-        <div>
-                <div>
+        <div className="mt-80 rounded-xl border-2 border-gray-600 p-5 ml-3">
+            <div>
                 <h2 className="text-2xl font-bold text-[#2F80ED]">Credit Hour Remaining {remaining} hr</h2>
                 <div className="ml-11 w-80 border-b-2 mt-2 border-gray-400"></div>
                     <h2 className="text-2xl font-bold">Course Name</h2>
